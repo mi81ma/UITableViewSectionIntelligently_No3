@@ -12,13 +12,15 @@ class ViewController: UITableViewController {
 
     let cellId = "cellId"
 
-    let names = [
-        "Amy", "Bill", "Zack", "Steve", "Jack", "Jill", "Mike"
+
+    let twoDimentionalArray = [
+        ["Amy", "Bill", "Zack", "Steve", "Jack", "Jill", "Mike"],
+        ["Carl", "Chris", "Christina", "Cameron"],
+        ["David", "Dan"],
+        ["Patrick", "Patty"]
     ]
 
-    let anotherListOfNames = [
-        "Carl", "Chris", "Christina", "Cameron"
-    ]
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,22 +36,21 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = "Header"
-        label.backgroundColor = .orange
+        label.backgroundColor = .orange
         return label
     }
 
     // Number of Section
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return twoDimentionalArray.count
     }
 
 
     // how many Cells row Set to Cell Row
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return names.count
-        }
-        return anotherListOfNames.count
+
+        return twoDimentionalArray[section].count
+
     }
 
 
@@ -59,14 +60,16 @@ class ViewController: UITableViewController {
 
 
         // cell
-        let name = indexPath.section == 0 ? names[indexPath.row] : anotherListOfNames[indexPath.row]
+//        let name = indexPath.section == 0 ? names[indexPath.row] : anotherListOfNames[indexPath.row]
+
+
+        let name = twoDimentionalArray[indexPath.section][indexPath.row]
 
         cell.textLabel?.text = name
 
         cell.textLabel?.text = "\(name) Section:\(indexPath.section) Row:\(indexPath.row)"
 
         return cell
-
 
     }
 
